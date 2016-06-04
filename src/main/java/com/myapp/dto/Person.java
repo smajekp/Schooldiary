@@ -32,6 +32,13 @@ public class Person extends CommonDto {
         this.phone = phone;
     }
 
+    /**
+     * Default constructor
+     */
+    public Person() {
+
+    }
+
     public String getName() {
         return name;
     }

@@ -20,6 +20,16 @@ public class Student extends Person {
         this.id = id;
     }
 
+    public Student(Integer id) {
+        super();
+        this.id = id;
+    }
+
+    public Student(Integer id, String name, String lastName) {
+        super(name, lastName, null, null);
+        this.id = id;
+    }
+
     public Integer getHomeNumber() {
         return homeNumber;
     }
