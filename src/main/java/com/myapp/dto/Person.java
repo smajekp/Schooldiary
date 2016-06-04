@@ -3,12 +3,7 @@ package com.myapp.dto;
 /**
  * Class
  */
-public class Person {
-
-    /**
-     * ID
-     */
-    protected Integer id;
+public class Person extends CommonDto {
 
     /**
      * name
@@ -35,14 +30,6 @@ public class Person {
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
