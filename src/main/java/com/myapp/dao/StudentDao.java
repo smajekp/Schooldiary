@@ -19,11 +19,7 @@ public class StudentDao extends CommonDao implements DaoInterface {
         String query = "Insert Into student Values (null, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, student.getName());
-            statement.setString(2, student.getLastName());
-            statement.setString(3, student.getAddress());
-            statement.setInt(4, student.getHomeNumber());
-            statement.setString(5, student.getPhone());
+            setParameters(student, statement);
             int newRowId = statement.executeUpdate();
             statement.close();
             return newRowId;
@@ -33,6 +29,14 @@ public class StudentDao extends CommonDao implements DaoInterface {
         }
     }
 
+    private void setParameters(Student student, PreparedStatement statement) throws SQLException {
+        statement.setString(1, student.getName());
+        statement.setString(2, student.getLastName());
+        statement.setString(3, student.getAddress());
+        statement.setInt(4, student.getHomeNumber());
+        statement.setString(5, student.getPhone());
+    }
+
     public void update(Object object) {
         Student student = (Student) object;
         String query = "Update student Set name = ?, last_name = ?, address = ?, home_number = ?, phone_number = ?" +
@@ -40,11 +44,7 @@ public class StudentDao extends CommonDao implements DaoInterface {
         PreparedStatement statement = null;
         try {
             statement = this.connection.prepareStatement(query);
-            statement.setString(1, student.getName());
-            statement.setString(2, student.getLastName());
-            statement.setString(3, student.getAddress());
-            statement.setInt(4, student.getHomeNumber());
-            statement.setString(5, student.getPhone());
+            setParameters(student, statement);
             statement.setInt(6, student.getId());
             statement.executeUpdate();
             statement.close();
