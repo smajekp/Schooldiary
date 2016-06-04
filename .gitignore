@@ -138,7 +138,6 @@ local.properties
 ### sqlite
 diary
 diary.db
-test
 test.db
 *.db.sqlite
 
