@@ -16,6 +16,16 @@ public class Presence extends CommonDto{
         this.absence = absence;
     }
 
+    @Override
+    public String toString() {
+        return "Presence{" +
+                "absence=" + absence +
+                ", date='" + date + '\'' +
+                ", subject='" + subject + '\'' +
+                ", student=" + student.getId() + " " + student.getName() + " " + student.getLastName() +
+                '}';
+    }
+
     public Presence(Integer id, Student student, String subject, String date, boolean absence) {
         this(student, subject, date, absence);
         this.id = id;

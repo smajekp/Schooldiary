@@ -3,10 +3,7 @@ package com.myapp.dao;
 import com.myapp.dto.Presence;
 import com.myapp.dto.Student;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +12,7 @@ import java.util.List;
  */
 public class PresenceDao extends CommonDao implements DaoInterface {
 
+    public static final String TABLE_NAME = "presence";
 
     public void deleteAll() {
         super.deleteAll("presence");
@@ -22,7 +20,7 @@ public class PresenceDao extends CommonDao implements DaoInterface {
 
     public int save(Object object) {
         Presence presence = (Presence) object;
-        String query = "Insert Into presence Values (null, ?, ?, ?, ?)";
+        String query = "Insert Into " + TABLE_NAME + " Values (null, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             setParameters(presence, statement);
@@ -43,14 +41,59 @@ public class PresenceDao extends CommonDao implements DaoInterface {
     }
 
     public void update(Object object) {
+        Presence presence = (Presence) object;
+        String query = "Update " + TABLE_NAME + " Set student_id = ?, subject = ?, date = ?, absence = ?" +
+                "Where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = this.connection.prepareStatement(query);
+            setParameters(presence, statement);
+            statement.setInt(6, presence.getId());
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public Object find(Integer id) {
+        String query = "Select * From " + TABLE_NAME + " Where id = ?";
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result != null && result.next()) {
+                Student student = new Student(result.getInt(2));
+                Presence presence = new Presence(result.getInt(1), student, result.getString(3),
+                        new Date(Long.valueOf(result.getString(4))).toString(), result.getBoolean(5));
+                statement.close();
+                return presence;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     public List find() {
+
+        String query = "Select * From " + TABLE_NAME;
+        List<Object> presences = new ArrayList<Object>();
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                Student student = new Student(result.getInt(2));
+                Presence presence = new Presence(result.getInt(1), student, result.getString(3), result.getString(4),
+                        result.getBoolean(5));
+                presences.add(presence);
+            }
+            statement.close();
+            return presences;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -76,6 +119,6 @@ public class PresenceDao extends CommonDao implements DaoInterface {
     }
 
     public void delete(Integer id) {
-
+            super.delete("presence", id);
     }
 }

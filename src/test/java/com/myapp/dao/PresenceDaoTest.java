@@ -39,9 +39,13 @@ public class PresenceDaoTest {
 
     @Test
     public void findByStudentId() throws Exception {
-        List<Object> presences = (List<Object>) dao.findByStudentId(1);
+        List<Presence> presences = (List<Presence>) dao.findByStudentId(1);
         Assert.assertNotNull(presences);
         Assert.assertTrue(presences.size() == 3);
+
+        for(Presence presence : presences) {
+            System.out.println(presence.toString());
+        }
      }
 
     @Test
