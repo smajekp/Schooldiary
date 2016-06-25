@@ -35,7 +35,7 @@ public class LessonDao extends CommonDao implements DaoInterface {
     private void setParameters(Lesson lesson, PreparedStatement statement) throws SQLException {
         statement.setString(1, lesson.getSubject());
         statement.setString(2, lesson.getTopic());
-        statement.setDate(3, lesson.getDate());
+        statement.setString(3, lesson.getDate());
     }
 
     public void update(Object object) {
@@ -61,7 +61,7 @@ public class LessonDao extends CommonDao implements DaoInterface {
             ResultSet result = statement.executeQuery();
             if (result != null && result.next()) {
                 Lesson lesson = new Lesson(result.getInt(1), result.getString(2), result.getString(3),
-                        new Date(Long.valueOf(result.getString(4))));
+                        result.getString(4));
                 statement.close();
                 return lesson;
             }
@@ -79,7 +79,7 @@ public class LessonDao extends CommonDao implements DaoInterface {
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 Lesson lesson = new Lesson(result.getInt(1), result.getString(2), result.getString(3),
-                        new Date(Long.valueOf(result.getString(4))));
+                        result.getString(4));
                 lessons.add(lesson);
             }
             statement.close();

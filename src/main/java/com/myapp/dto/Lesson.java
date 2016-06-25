@@ -1,7 +1,5 @@
 package com.myapp.dto;
 
-import java.sql.Date;
-
 /**
  * Created by Piotrek on 2016-06-04.
  */
@@ -11,15 +9,15 @@ public class Lesson extends CommonDto {
 
     String topic;
 
-    Date date;
+    String date;
 
-    public Lesson(String subject, String topic, Date date) {
+    public Lesson(String subject, String topic, String date) {
         this.subject = subject;
         this.topic = topic;
         this.date = date;
     }
 
-    public Lesson(Integer id, String subject, String topic, Date date) {
+    public Lesson(Integer id, String subject, String topic, String date) {
         this(subject, topic, date);
         this.id = id;
     }
@@ -40,11 +38,11 @@ public class Lesson extends CommonDto {
         this.topic = topic;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

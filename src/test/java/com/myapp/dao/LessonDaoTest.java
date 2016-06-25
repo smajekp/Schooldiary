@@ -19,7 +19,7 @@ public class LessonDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        java.sql.Date currentDate = new java.sql.Date(new java.util.Date().getTime());
+        String currentDate="13/03/2016";
         for (int i = 1; i <= REPEAT; i++) {
             dao.save(new Lesson("subject" + i, "topic" + i, currentDate));
         }
@@ -32,7 +32,7 @@ public class LessonDaoTest {
 
     @Test
     public void save() throws Exception {
-        java.sql.Date currentDate = new java.sql.Date(new java.util.Date().getTime());
+        String currentDate="13/03/2016";
         Lesson lesson = new Lesson("Subject", "topic", currentDate);
         int newRowId = dao.save(lesson);
         Assert.assertNotEquals(0, newRowId);

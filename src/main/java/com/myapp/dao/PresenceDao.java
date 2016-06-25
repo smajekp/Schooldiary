@@ -66,7 +66,7 @@ public class PresenceDao extends CommonDao implements DaoInterface {
             if (result != null && result.next()) {
                 Student student = new Student(result.getInt(2));
                 Presence presence = new Presence(result.getInt(1), student, result.getString(3),
-                        new Date(Long.valueOf(result.getString(4))).toString(), result.getBoolean(5));
+                        result.getString(4), result.getBoolean(5));
                 statement.close();
                 return presence;
             }
@@ -97,7 +97,7 @@ public class PresenceDao extends CommonDao implements DaoInterface {
         return null;
     }
 
-    public Object findByStudentId(Integer id) {
+    public List findByStudentId(Integer id) {
         String query = "Select s.id, s.name, s.last_name, p.subject, p.date, p.absence from presence p Inner Join student s on " +
                 "s.id = p.student_id where s.id = ? and p.absence = 0";
         try {
