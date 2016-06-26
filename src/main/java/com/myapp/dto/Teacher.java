@@ -1,5 +1,7 @@
 package com.myapp.dto;
 
+import com.myapp.ui.profile.TeacherMemento;
+
 /**
  * Class Teacher
  */
@@ -38,6 +40,21 @@ public class Teacher extends Person {
                    String role, String subject, String address, String phone) {
         this(login, password, name, lastName, role, subject, address, phone);
         this.id = id;
+    }
+
+    public TeacherMemento saveToMemento() {
+        return new TeacherMemento(this.login, this.password, this.name, this.lastName, this.role, this.subject, this.address, this.phone);
+    }
+
+    public void restoreFromMemento(TeacherMemento memento) {
+        this.login = memento.getLogin();
+        this.password = memento.getPassword();
+        this.name = memento.getName();
+        this.lastName = memento.getLastName();
+        this.role = memento.getRole();
+        this.subject = memento.getSubject();
+        this.address = memento.getAddress();
+        this.phone = memento.getPhone();
     }
 
     public String getLogin() {

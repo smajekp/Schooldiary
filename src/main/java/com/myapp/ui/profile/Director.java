@@ -186,76 +186,116 @@ public class Director extends Profile {
 
                                     if (choiceEdit.equals("1")) {
 
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
+
                                         System.out.println("Wpisz nowy login nauczyciela:");
                                         String newLogin = br.readLine();
+                                        caretaker.addMemento("before", teacher.saveToMemento());
                                         teacher.setLogin(newLogin);
+                                        caretaker.addMemento("after", teacher.saveToMemento());
                                         teacherDao.update(teacher);
-                                        System.out.println("Login został zaktualizowany\n");
+                                        System.out.println("Login został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getLogin() + " na" +
+                                                " " + caretaker.getMemento("after").getLogin() + "\n");
 
                                     } else if (choiceEdit.equals("2")) {
 
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
+
                                         System.out.println("Wpisz nowe hasło nauczyciela:");
                                         String newPassword = br.readLine();
+                                        caretaker.addMemento("before", teacher.saveToMemento());
                                         teacher.setPassword(newPassword);
+                                        caretaker.addMemento("after", teacher.saveToMemento());
                                         teacherDao.update(teacher);
-                                        System.out.println("Hasło zostało zaktualizowane\n");
+                                        System.out.println("Hasło zostało zaktualizowane z" +
+                                                " " + caretaker.getMemento("before").getPassword() + " na" +
+                                                " " + caretaker.getMemento("after").getPassword() + "\n");
 
                                     } else if (choiceEdit.equals("3")) {
+
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
 
                                         while(true) {
                                             System.out.println("Wpisz nowe imię nauczyciela:");
                                             String newName = br.readLine();
 
                                             if (newName.matches("[a-zA-Z]+$")) {
+                                                caretaker.addMemento("before", teacher.saveToMemento());
                                                 teacher.setName(newName);
+                                                caretaker.addMemento("after", teacher.saveToMemento());
                                                 teacherDao.update(teacher);
                                                 break;
                                             } else
                                                 System.out.println("Imię musi się składać wyłącznie z liter\n");
                                         }
 
-                                        System.out.println("Imię zostało zaktualizowane\n");
+                                        System.out.println("Imię zostało zaktualizowane z" +
+                                                " " + caretaker.getMemento("before").getName() + " na" +
+                                                " " + caretaker.getMemento("after").getName() + "\n");
 
                                     } else if (choiceEdit.equals("4")) {
+
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
 
                                         while(true) {
                                             System.out.println("Wpisz nowe nazwisko nauczyciela:");
                                             String LastName = br.readLine();
 
                                             if (LastName.matches("[a-zA-Z]+$")) {
+                                                caretaker.addMemento("before", teacher.saveToMemento());
                                                 teacher.setLastName(LastName);
+                                                caretaker.addMemento("after", teacher.saveToMemento());
                                                 teacherDao.update(teacher);
                                                 break;
                                             }else
                                                 System.out.println("Nazwisko musi się składać wyłącznie z liter\n");
                                         }
 
-                                        System.out.println("Nazwisko zostało zaktualizowane\n");
+                                        System.out.println("Nazwisko zostało zaktualizowane z" +
+                                                " " + caretaker.getMemento("before").getLastName() + " na" +
+                                                " " + caretaker.getMemento("after").getLastName() + "\n");
 
                                     } else if (choiceEdit.equals("5")) {
+
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
+
                                         while(true) {
                                             System.out.println("Wpisz nowy przedmiot nauczyciela:");
                                             String subject = br.readLine();
 
                                             if (subject.matches("[a-zA-Z]+$")) {
+                                                caretaker.addMemento("before", teacher.saveToMemento());
                                                 teacher.setSubject(subject);
+                                                caretaker.addMemento("after", teacher.saveToMemento());
                                                 teacherDao.update(teacher);
                                                 break;
                                             }else
                                                 System.out.println("Przedmiot musi się składać wyłącznie z liter\n");
                                         }
 
-                                        System.out.println("Przedmiot został zaktualizowany\n");
+                                        System.out.println("Przedmiot został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getSubject() + " na" +
+                                                " " + caretaker.getMemento("after").getSubject() + "\n");
 
                                     } else if (choiceEdit.equals("6")) {
 
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
+
                                         System.out.println("Wpisz nowy adres nauczyciela:");
                                         String address = br.readLine();
+                                        caretaker.addMemento("before", teacher.saveToMemento());
                                         teacher.setAddress(address);
+                                        caretaker.addMemento("after", teacher.saveToMemento());
                                         teacherDao.update(teacher);
-                                        System.out.println("Adres został zaktualizowany\n");
+                                        System.out.println("Adres został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getAddress() + " na" +
+                                                " " + caretaker.getMemento("after").getAddress() + "\n");
 
                                     } else if (choiceEdit.equals("7")) {
+
+                                        TeacherCaretaker caretaker = new TeacherCaretaker();
+
                                         while(true) {
                                             System.out.println("Wpisz nowy numer telefonu nauczyciela:");
                                             String phoneNumber = br.readLine();
@@ -263,7 +303,9 @@ public class Director extends Profile {
                                             if(phoneNumber.length() == 9) {
 
                                                 if (phoneNumber.matches("[0-9]+$")) {
+                                                    caretaker.addMemento("before", teacher.saveToMemento());
                                                     teacher.setPhone(phoneNumber);
+                                                    caretaker.addMemento("after", teacher.saveToMemento());
                                                     teacherDao.update(teacher);
                                                     break;
                                                 } else
@@ -271,7 +313,9 @@ public class Director extends Profile {
                                             }else
                                                 System.out.println("Numer telefonu musi się składać tylko z 9 cyfr\n");
                                         }
-                                        System.out.println("Numer telefonu został zaktualizowany\n");
+                                        System.out.println("Numer telefonu został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getPhone() + " na" +
+                                                " " + caretaker.getMemento("after").getPhone() + "\n");
 
                                     } else if (choiceEdit.equals("8")) {
 

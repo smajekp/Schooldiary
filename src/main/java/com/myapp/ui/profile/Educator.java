@@ -222,60 +222,89 @@ public class Educator extends Profile {
 
                                     if (choiceEdit.equals("1")) {
 
+                                        StudentCaretaker caretaker = new StudentCaretaker();
+
                                         while (true) {
                                             System.out.println("Wpisz nowe imię ucznia:");
                                             String newName = br.readLine();
 
                                             if (newName.matches("[a-zA-Z]+$")) {
+                                                caretaker.addMemento("before", student.saveToMemento());
                                                 student.setName(newName);
+                                                caretaker.addMemento("after", student.saveToMemento());
                                                 studentDao.update(student);
                                                 break;
                                             } else
                                                 System.out.println("Imię musi się składać wyłącznie z liter\n");
                                         }
 
-                                        System.out.println("Imię zostało zaktualizowane\n");
+                                        System.out.println("Imię zostało zaktualizowane z" +
+                                                " " + caretaker.getMemento("before").getName() + " na" +
+                                                " " + caretaker.getMemento("after").getName() + "\n");
 
                                     } else if (choiceEdit.equals("2")) {
+
+                                        StudentCaretaker caretaker = new StudentCaretaker();
 
                                         while (true) {
                                             System.out.println("Wpisz nowe nazwisko ucznia:");
                                             String LastName = br.readLine();
 
                                             if (LastName.matches("[a-zA-Z]+$")) {
+                                                caretaker.addMemento("before", student.saveToMemento());
                                                 student.setLastName(LastName);
+                                                caretaker.addMemento("after", student.saveToMemento());
                                                 studentDao.update(student);
                                                 break;
                                             } else
                                                 System.out.println("Nazwisko musi się składać wyłącznie z liter\n");
                                         }
 
-                                        System.out.println("Nazwisko zostało zaktualizowane\n");
+                                        System.out.println("Nazwisko zostało zaktualizowane z" +
+                                                " " + caretaker.getMemento("before").getLastName() + " na" +
+                                                " " + caretaker.getMemento("after").getLastName() + "\n");
 
                                     } else if (choiceEdit.equals("3")) {
 
+                                        StudentCaretaker caretaker = new StudentCaretaker();
+
                                         System.out.println("Wpisz nowy adres ucznia:");
                                         String address = br.readLine();
+                                        caretaker.addMemento("before", student.saveToMemento());
                                         student.setAddress(address);
+                                        caretaker.addMemento("after", student.saveToMemento());
                                         studentDao.update(student);
-                                        System.out.println("Adres został zaktualizowany\n");
+                                        System.out.println("Adres został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getAddress() + " na" +
+                                                " " + caretaker.getMemento("after").getAddress() + "\n");
 
                                     } else if (choiceEdit.equals("4")) {
+
+                                        StudentCaretaker caretaker = new StudentCaretaker();
+
                                         while (true) {
+
                                             System.out.println("Wpisz nowy numer telefonu domowego ucznia:");
                                             int phoneNumber = in.nextInt();
                                             int length = (int) Math.log10(phoneNumber) + 1;
 
                                             if (length == 9) {
+                                                    caretaker.addMemento("before", student.saveToMemento());
                                                     student.setHomeNumber(phoneNumber);
+                                                    caretaker.addMemento("after", student.saveToMemento());
                                                     studentDao.update(student);
                                                     break;
                                             } else
                                                 System.out.println("Numer telefonu domowego musi się składać tylko z 9 cyfr\n");
                                         }
-                                        System.out.println("Numer telefonu domowego został zaktualizowany\n");
+                                        System.out.println("Numer telefonu domowego został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getHomeNumber() + " na" +
+                                                " " + caretaker.getMemento("after").getHomeNumber() + "\n");
 
                                     } else if (choiceEdit.equals("5")) {
+
+                                        StudentCaretaker caretaker = new StudentCaretaker();
+
                                         while (true) {
                                             System.out.println("Wpisz nowy numer telefonu ucznia:");
                                             String phoneNumber = br.readLine();
@@ -283,7 +312,9 @@ public class Educator extends Profile {
                                             if (phoneNumber.length() == 9) {
 
                                                 if (phoneNumber.matches("[0-9]+$")) {
+                                                    caretaker.addMemento("before", student.saveToMemento());
                                                     student.setPhone(phoneNumber);
+                                                    caretaker.addMemento("after", student.saveToMemento());
                                                     studentDao.update(student);
                                                     break;
                                                 } else
@@ -291,7 +322,9 @@ public class Educator extends Profile {
                                             } else
                                                 System.out.println("Numer telefonu musi się składać tylko z 9 cyfr\n");
                                         }
-                                        System.out.println("Numer telefonu został zaktualizowany\n");
+                                        System.out.println("Numer telefonu został zaktualizowany z" +
+                                                " " + caretaker.getMemento("before").getPhone() + " na" +
+                                                " " + caretaker.getMemento("after").getPhone() + "\n");
 
                                     } else if (choiceEdit.equals("6")) {
 
