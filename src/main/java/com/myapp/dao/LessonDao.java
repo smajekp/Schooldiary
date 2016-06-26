@@ -17,6 +17,13 @@ public class LessonDao extends CommonDao implements DaoInterface {
         super.deleteAll(TABLE_NAME);
     }
 
+    public LessonDao() {
+    }
+
+    public LessonDao(boolean isTest) {
+        super(isTest);
+    }
+
     public int save(Object object) {
         Lesson lesson = (Lesson) object;
         String query = "Insert Into " + TABLE_NAME + " Values (null, ?, ?, ?)";

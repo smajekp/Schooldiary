@@ -15,8 +15,8 @@ import java.util.List;
 public class GradeDaoTest {
 
     private static final int REPEAT = 5;
-    GradeDao gradeDao = new GradeDao();
-    StudentDao studentDao = new StudentDao();
+    GradeDao gradeDao = new GradeDao(true);
+    StudentDao studentDao = new StudentDao(true);
 
     @Before
     public void setUp() throws Exception {

@@ -14,6 +14,13 @@ import java.util.List;
  */
 public class StudentDao extends CommonDao implements DaoInterface {
 
+    public StudentDao() {
+    }
+
+    public StudentDao(boolean isTest) {
+        super(isTest);
+    }
+
     public int save(Object object) {
         Student student = (Student) object;
         String query = "Insert Into student Values (null, ?, ?, ?, ?, ?)";

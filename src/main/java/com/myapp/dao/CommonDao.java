@@ -25,7 +25,18 @@ public abstract class CommonDao {
     public CommonDao() {
         try {
             Class.forName("org.sqlite.JDBC");
-            this.connection = DriverManager.getConnection(getDatabaseUrl());
+            this.connection = DriverManager.getConnection(getDatabaseUrl(false));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public CommonDao(boolean isTest) {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            this.connection = DriverManager.getConnection(getDatabaseUrl(isTest));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -37,14 +48,18 @@ public abstract class CommonDao {
      * Get database url from property file
      * @return
      */
-    private String getDatabaseUrl() {
+    private String getDatabaseUrl(boolean isTest) {
         Properties properties = new Properties();
         InputStream input = null;
 
         try {
             input = new FileInputStream("src/main/resources/config.properties");
             properties.load(input);
-            return properties.getProperty("database.url");
+            if (isTest) {
+                return properties.getProperty("database.url.test");
+            } else {
+                return properties.getProperty("database.url");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

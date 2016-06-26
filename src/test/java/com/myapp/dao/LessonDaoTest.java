@@ -15,7 +15,7 @@ public class LessonDaoTest {
 
     private static final int REPEAT = 5;
 
-    private LessonDao dao = new LessonDao();
+    private LessonDao dao = new LessonDao(true);
 
     @Before
     public void setUp() throws Exception {

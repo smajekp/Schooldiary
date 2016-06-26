@@ -15,8 +15,8 @@ import java.util.List;
 public class PresenceDaoTest {
 
     private static final int REPEAT = 5;
-    PresenceDao dao = new PresenceDao();
-    StudentDao studentDao = new StudentDao();
+    PresenceDao dao = new PresenceDao(true);
+    StudentDao studentDao = new StudentDao(true);
 
     @Before
     public void setUp() throws Exception {

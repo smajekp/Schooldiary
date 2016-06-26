@@ -19,6 +19,10 @@ public class TeacherDao extends CommonDao implements DaoInterface {
         super();
     }
 
+    public TeacherDao(boolean isTest) {
+        super(isTest);
+    }
+
     public int save(Object object) {
         Teacher teacher = (Teacher) object;
         String query = "Insert Into teacher Values (null, ?, ?, ?, ?, ?, ?, ?, ?)";

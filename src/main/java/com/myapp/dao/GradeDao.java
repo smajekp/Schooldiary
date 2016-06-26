@@ -15,6 +15,12 @@ public class GradeDao extends CommonDao implements DaoInterface {
 
     public static final String TABLE_NAME = "grades";
 
+    public GradeDao() {}
+
+    public GradeDao(boolean isTest) {
+        super(isTest);
+    }
+
     public void deleteAll() {
         super.deleteAll("grades");
     }

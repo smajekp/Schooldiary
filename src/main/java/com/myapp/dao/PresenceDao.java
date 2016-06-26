@@ -14,6 +14,13 @@ public class PresenceDao extends CommonDao implements DaoInterface {
 
     public static final String TABLE_NAME = "presence";
 
+    public PresenceDao() {
+    }
+
+    public PresenceDao(boolean isTest) {
+        super(isTest);
+    }
+
     public void deleteAll() {
         super.deleteAll("presence");
     }
