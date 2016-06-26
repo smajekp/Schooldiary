@@ -15,6 +15,19 @@ import java.util.Scanner;
  */
 public class Teacher extends Profile {
 
+    private static Teacher instance = null;
+
+    private Teacher(){
+
+    }
+
+    public static Teacher getInstance() {
+        if (instance == null) {
+            instance = new Teacher();
+        }
+        return instance;
+    }
+
     public void printMenu(String profileName) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Scanner in = new Scanner(System.in);

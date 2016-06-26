@@ -7,11 +7,11 @@ public class ProfileFactory {
     public static Profile buildProfile(ProfileType type){
         switch(type){
             case TEACHER:
-                return new Teacher();
+                return Teacher.getInstance();
             case EDUCATOR:
-                return new Educator();
+                return Educator.getInstance();
             case DIRECTOR:
-                return new Director();
+                return Director.getInstance();
             default:
                 return null;
         }

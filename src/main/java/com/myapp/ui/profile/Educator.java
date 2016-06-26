@@ -18,6 +18,18 @@ import java.util.Scanner;
  */
 public class Educator extends Profile {
 
+    private static Educator instance = null;
+
+    private Educator() {}
+
+    public static Educator getInstance() {
+        if (instance == null) {
+            instance = new Educator();
+        }
+        return instance;
+    }
+
+
     public void printMenu(String profileName) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -16,6 +16,17 @@ import java.util.Scanner;
  */
 public class Director extends Profile {
 
+    private static Director instance = null;
+
+    private Director() {}
+
+    public static Director getInstance() {
+        if (instance == null) {
+            instance = new Director();
+        }
+        return instance;
+    }
+
     public void printMenu(String profileName) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
